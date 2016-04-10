@@ -124,6 +124,7 @@ void Event::getLocation(vector<Event>& eventList,int index){
         }
         valid = false;
     }
+    ///initializing location by using location setter 
     eventList[index].set_user_loaction(location_name[choice-1]);
 
 }
@@ -210,14 +211,11 @@ void Event::set_location_name(){
     ///create more location...
 }
 
+
+///this function has not been used 
 vector<Event> Event::fillVector(vector<Event>& eventList){
-
-
     vector<Event> newEvnetLists;
-
-
     return newEvnetLists;
-
 }
 
 void Event::makeChange(vector<Event>& evetList){
@@ -244,7 +242,7 @@ void Event::makeChange(vector<Event>& evetList){
         valid = false;
    }
 
-    int field = pickChangeField(evetList,index);
+    int field = pickChangeField(evetList,index);///which field to edit
     changeField(evetList,index-1,field);
 }
 
@@ -299,7 +297,6 @@ int main(){
 
         switch(choice){
             case 1:{
-
                 ///create new object for an event
                 Event* newEvent = new Event();
                 ///add new event to evetlist
@@ -324,7 +321,6 @@ int main(){
         //cout<<"size : "<<evetList.size()<<endl;
 
         choice = event->menu();
-
     }//ebd of while
     return 0;
 }
