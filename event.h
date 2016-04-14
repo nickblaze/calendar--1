@@ -5,6 +5,11 @@
     -user input for event (not all fields)
     -user is able to make a chnage for the event 
     -show the events 
+    
+    
+    4/14/2016
+    - added soft
+    - added functions change an event 
 
 
 
@@ -12,9 +17,6 @@
 
 
 */
-#endif // EVENT_H
-
-
 #ifndef EVENT_H
 #define EVENT_H
 #include "time.h"
@@ -24,6 +26,9 @@
 using namespace std;
 
 class Event{
+
+    friend class Soft;
+
     public:
         Event(time_t start, time_t end,char* location);
         Event();
@@ -33,12 +38,17 @@ class Event{
         void getLocation(vector<Event>& eventList,int index);
         void getUserinfo();
         time_t getStartTime(vector<Event>& eventList,int index);
-        void getEndTime(time_t start,vector<Event>& eventList,int index);
-        void getDate();
-        void makeChange(vector<Event>& evetList);
-        int pickChangeField(vector<Event>& evetList, int choice);
-        void changeField(vector<Event>& evetList, int index,int field);
+        void getEndTime(time_t start,vector<Event>& HardEvent,int index);
+        void getDate(vector<Event>& HardEvent, int index);
+        void makeChange(vector<Event>& HardEvent);
+        int pickChangeField(vector<Event>& HardEvent, int choice);
+        void changeField(vector<Event>& HardEvent, int index,int field);
+        bool isSleeping(vector<Event>& eventList,int i,int index);
+        void getSleepingTime(vector<Event>& eventList,int index);
+        bool validStartingTime(vector<Event>& eventList,int i,int index);
+        bool validSleepTime(vector<Event>& eventList,int i,int index);
 
+        ///getter and setter
         double get_location_x();
         void set_location_x(double a);
         double get_location_y();
@@ -57,9 +67,16 @@ class Event{
         time_t get_sleep_time_begin();
         void set_sleep_time_end(time_t slee_time_end);
         time_t get_sleep_time_end();
+        int get_day();
+        void set_day(int a);
+        int get_month();
+        void set_month(int a);
+
     protected:
 
     private:
+        int month;
+        int day;
         double location_x;
         double location_y;
         unsigned int duration;
@@ -72,7 +89,5 @@ class Event{
         char* user_loaction;
 
 };
-
-
 
 #endif // EVENT_H
